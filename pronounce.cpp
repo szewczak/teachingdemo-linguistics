@@ -12,8 +12,6 @@ Pronunciation    : D OW1 N AH2 T
 
 Identical        : DOUGHNUT
 
-~~~~~~~~~~~~~~~~~~~~~
-
 ...*/
 
 
@@ -22,45 +20,44 @@ Identical        : DOUGHNUT
 #include <climits>  //for max min opps
 
 
-ifstream streamManager(string name) {
-    ifstream cmu(name) {
+fstream::ifstream streamManager(){
+    ifstream cmu("cmudict.0.7a.txt");
         if (cmu.fail()) {
             cerr << "Dict file not found. Exiting \n";
             exit(1);
         }
-    }
     return cmu;
 }
+///
+    /*
+    searchWordFunction *(string targetWord,stream ref)
+        while ref allows >> word reading:
+            if targetWord = word read from file:
+                return stream ref at current file position
+                break //this skips the exit at end of function for failed search
+            else:
+                skip to end of line to prepare for net read
+        EXIT if while loop concludes and has not returned ref yet, search fail.
 
-/*
-searchWordFunction *(string targetWord,stream ref)
-    while ref allows >> word reading:
-        if targetWord = word read from file:
-            return stream ref at current file position
-            break //this skips the exit at end of function for failed search
-        else:
-            skip to end of line to prepare for net read
-    EXIT if while loop concludes and has not returned ref yet, search fail.
+    /*
+    searchPrononceFunction *(string targetWord,stream ref)
+        Set streamref to 0 again.
+        string output
+        string temp
+        while ref allows >> word reading:
+            read word to temp
+            readline
+            if pronounce = readline:
+                string output + temp + endl
+        return output string
 
-/*
-searchPrononceFunction *(string targetWord,stream ref)
-    Set streamref to 0 again.
-    string output
-    string temp
-    while ref allows >> word reading:
-        read word to temp
-        readline
-        if pronounce = readline:
-            string output + temp + endl
-    return output string
-
-/*
-pronounceFunction (string a, stream ref)
-    assumes stream ref is at start of pronounce string
-    a = readline from streamref
-    return a
-*/
-
+    /*
+    pronounceFunction (string a, stream ref)
+        assumes stream ref is at start of pronounce string
+        a = readline from streamref
+        return a
+    */
+///main
 int main() {
     string dictName = "cmudict.0.7a.txt";
     // get cin << target word
@@ -71,5 +68,4 @@ int main() {
     // cout << a << endl
     // cout << searchPrononceFunction(a, streamRef)
 }
-/*
 
