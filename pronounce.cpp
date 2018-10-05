@@ -4,13 +4,14 @@ Course: CSCI-136
 Instructor: Subhadarshi Panda
 Assignment: Project 2 phase 2 Pesudocode
 Task:
-    User enters a word — the program reports pronunciation as a list of phonemes AND a list of words that sound the same (is made up of exactly the same sequence of phonemes). Example:
+User enters a word — the program reports pronunciation as a list of phonemes AND a list of words that sound the same (is made up of exactly the same sequence of phonemes). Example:
 
-    > donut
+> donut
 
-    Pronunciation    : D OW1 N AH2 T
+Pronunciation    : D OW1 N AH2 T
 
-    Identical        : DOUGHNUT
+Identical        : DOUGHNUT
+
 
 ~~~~~~~~~~~~~~~~~~~~~
 
