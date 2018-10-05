@@ -19,11 +19,13 @@ Identical        : DOUGHNUT
 #include <fstream>  //for file streaming
 #include <climits>  //for max min opps
 
+using namespace std;
 
-fstream::ifstream streamManager(){
+
+ifstream streamManager(){
     ifstream cmu("cmudict.0.7a.txt");
         if (cmu.fail()) {
-            cerr << "Dict file not found. Exiting \n";
+            cout << "Dict file not found. Exiting \n";
             exit(1);
         }
     return cmu;
@@ -61,7 +63,7 @@ fstream::ifstream streamManager(){
 int main() {
     string dictName = "cmudict.0.7a.txt";
     // get cin << target word
-    ifstream dictstream = streamManager(dictName);
+    ifstream dictstream = streamManager();
     cout << "umm nothing broke\n";
     // searchFunction(targetword)
     // a = pronounceFunction(streamRef)
