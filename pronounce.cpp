@@ -20,54 +20,69 @@ Identical        : DOUGHNUT
 #include <climits>  //for max min opps
 
 using namespace std;
+//global
+ifstream cmudict;
 
+string uppercase(string& word) {
+  for (int i = 0; i < word.length(); i++) {
+    word[i] = toupper(word[i]);
+  }
+  return word;
+}
 
-ifstream streamManager(){
+ifstream streamManager(){   //opens a stream to the dictionary file
     ifstream cmu("cmudict.0.7a.txt");
         if (cmu.fail()) {
-            cout << "Dict file not found. Exiting \n";
+            cerr << "Dict file not found. Exiting \n";
             exit(1);
         }
     return cmu;
 }
-///
-    /*
-    searchWordFunction *(string targetWord,stream ref)
-        while ref allows >> word reading:
-            if targetWord = word read from file:
-                return stream ref at current file position
-                break //this skips the exit at end of function for failed search
-            else:
-                skip to end of line to prepare for net read
-        EXIT if while loop concludes and has not returned ref yet, search fail.
 
-    /*
-    searchPrononceFunction *(string targetWord,stream ref)
-        Set streamref to 0 again.
-        string output
-        string temp
-        while ref allows >> word reading:
-            read word to temp
-            readline
-            if pronounce = readline:
-                string output + temp + endl
-        return output string
 
-    /*
-    pronounceFunction (string a, stream ref)
-        assumes stream ref is at start of pronounce string
-        a = readline from streamref
-        return a
-    */
-///main
-int main() {
+string findWord (string inputWord) {//parses through dict and returns pronounce string
+    string pronounce;
+    string targetWord;
+    while(cmudict >> targetWord){
+        if(inputWord==targetWord){
+            getline(cmudict, pronounce);
+            break;
+        }   
+        else cmudict.ignore(INT_MAX, '\n'); //skips to the end of line
+    }
+    return pronounce;
+}
+
+
+void sortPronounce (string apronounce, string &whitelist) {
+    cmudict.clear();
+    cmudict.seekg(0, ios::beg);
+    for(int i=0; i < 119 - 1; ++i){
+    cmudict.ignore(INT_MAX, '\n');
+    }
+    string bword;
+    string bpronounce;
+    while(cmudict >> bword){
+        getline(cmudict, bpronounce);
+        if(bpronounce==apronounce){
+            whitelist = whitelist + " " + bword;
+        }
+    }
+}
+
+
+
+int main(){
+    string input;
+    cin >> input;
+    uppercase(input);
     string dictName = "cmudict.0.7a.txt";
-    // get cin << target word
-    ifstream dictstream = streamManager();
-    cout << "umm nothing broke\n";
-    // searchFunction(targetword)
-    // a = pronounceFunction(streamRef)
-    // cout << a << endl
-    // cout << searchPrononceFunction(a, streamRef)
+    cmudict = streamManager();
+    string out;
+    string temp = findWord(input);
+    out = "Pronunciation    :" + temp + "\n";
+    out = out + "Identical        :";
+    sortPronounce(temp,out);
+    cout << endl << endl << out<< endl;
 }
 
