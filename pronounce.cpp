@@ -202,7 +202,7 @@ void removePhoneme(string apronounce){
 void replacePhoneme (string apronounce) { //creates string of identical words to pronounce key
     apronounce = apronounce.substr(2,apronounce.length());  //removes leading 2 spaces
     int aArraySize = phonemeCount(apronounce);
-    string aArray[aArraySize]; //blank array of apronounce
+    string aArray[20]; //blank array of apronounce
     int index = 0;
     for(int i=0; i<apronounce.length(); i++){
         if(apronounce[i] == ' '){
