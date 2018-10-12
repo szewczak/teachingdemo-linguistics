@@ -42,9 +42,9 @@ string uppercase(string& word) {
 }
 
 ifstream streamManager(){   //opens a stream to the dictionary file
-    ifstream cmu("cmudict.0.7a.txt");
+    ifstream cmu("cmudict.0.7a");
         if (cmu.fail()) {
-            cerr << "Dict file not found. Exiting \n";
+            cerr << "Dict file not found! Exiting \n";
             exit(1);
         }
     return cmu;
@@ -61,6 +61,10 @@ string findWord (string inputWord) {//parses through dict and returns pronounce 
             break;
         }   
         else cmudict.ignore(INT_MAX, '\n'); //skips to the end of line
+    }
+    if (cmudict.fail()) {
+    cerr << "Not found" << endl;
+    exit(1); // exit if failed to open the file
     }
     string trimPronounce = pronounce.substr(1,pronounce.length());  //removes leading 2 spaces
 
