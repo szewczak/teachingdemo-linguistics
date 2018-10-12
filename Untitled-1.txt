@@ -1,0 +1,25 @@
+ABINGDON  AE1 B IH0 NG D AH0 N
+ABINGTON  AE1 B IH0 NG D AH0 N
+ABNER  AE1 B N ER0
+ABNEY  AE1 B N IY0
+
+ABOLISH    AH0 B AA1 L IH0 SH
+ABOLISHED  AH0 B AA1 L IH0 SH T
+
+
+ACCOUNTABLE  AH0 K AW1 N T AH0 B AH0 L
+UNACCOUNTABLE  AH2 N AH0 K AW1 N T AH0 B AH0 L
+
+
+
+On input:
+  plants
+
+
+While expected:
+  Pronunciation    : P L AE1 N T S
+  
+  Identical        : PLANT'S PLANTS' PLANTZ
+  Add phoneme      : PLANET'S PLANETS
+  Remove phoneme   : LANTZ PANTS PLANT PLANTE PLATTS PLATZ
+  Replace phoneme  : GLANTZ PLANTER
