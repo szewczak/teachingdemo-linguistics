@@ -89,7 +89,7 @@ string identicalPhoneme(string apronounce) { //creates string of identical words
 void addPhoneme(string apronounce){
     apronounce = apronounce.substr(2,apronounce.length());  //removes leading 2 spaces
     int aArraySize = phonemeCount(apronounce);
-    string aArray[aArraySize]; //blank array of apronounce
+    string aArray[20]; //blank array of apronounce
     int index = 0;
 
     for(int i=0; i<apronounce.length(); i++){
@@ -114,7 +114,7 @@ void addPhoneme(string apronounce){
         bpronounce = bpronounce.substr(2,bpronounce.length());  //removes leading 2 spaces
         bArraySize = phonemeCount(bpronounce);
         if(aArraySize + 1 == bArraySize){
-            string bArray[bArraySize]; //blank array of apronounce
+            string bArray[20]; //blank array of apronounce
             int indexb = 0;
             for(int i=0; i<bpronounce.length(); i++){  //creates bArray
                 if(bpronounce[i] == ' '){
@@ -145,7 +145,7 @@ void addPhoneme(string apronounce){
 void removePhoneme(string apronounce){
     apronounce = apronounce.substr(2,apronounce.length());  //removes leading 2 spaces
     int aArraySize = phonemeCount(apronounce);
-    string aArray[aArraySize]; //blank array of apronounce
+    string aArray[20]; //blank array of apronounce
     int index = 0;
     for(int i=0; i<apronounce.length(); i++){
         if(apronounce[i] == ' '){
@@ -169,7 +169,7 @@ void removePhoneme(string apronounce){
         bpronounce = bpronounce.substr(2,bpronounce.length());  //removes leading 2 spaces
         bArraySize = phonemeCount(bpronounce);
         if(aArraySize -1 == bArraySize){
-            string bArray[bArraySize]; //blank array of apronounce
+            string bArray[20]; //blank array of apronounce
             int indexb = 0;
             for(int i=0; i<bpronounce.length(); i++){  //creates bArray
                 if(bpronounce[i] == ' '){
@@ -226,7 +226,7 @@ void replacePhoneme (string apronounce) { //creates string of identical words to
         bpronounce = bpronounce.substr(2,bpronounce.length());  //removes leading 2 spaces
         bArraySize = phonemeCount(bpronounce);
         if(aArraySize==bArraySize){
-            string bArray[bArraySize]; //blank array of apronounce
+            string bArray[20]; //blank array of apronounce
             int indexb = 0;
             for(int i=0; i<bpronounce.length(); i++){
                 if(bpronounce[i] == ' '){
