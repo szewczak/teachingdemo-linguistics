@@ -24,6 +24,17 @@ using namespace std;
 //global
 ifstream cmudict;
 
+bool checkword(string word){
+    bool pass = true;
+    for(int i=0; i<word.length();i++){
+        if(word[i]=='('){
+            pass = false;
+            break;
+        }
+    }
+    return pass;
+}
+
 int phonemeCount(string pronounce){// returns the length of the phoneme array
     int spaces=1;
     for(int i=0; i < pronounce.length(); i++){ 
@@ -72,7 +83,7 @@ string findWord (string inputWord) {//parses through dict and returns pronounce 
     return pronounce;
 }
 
-string identicalPhoneme(string apronounce) { //creates string of identical words to pronounce key
+void identicalPhoneme(string apronounce, string aword) { //creates string of identical words to pronounce key
     cmudict.clear();
     cmudict.seekg(0, ios::beg);
     string out = "Identical        :";
@@ -83,11 +94,11 @@ string identicalPhoneme(string apronounce) { //creates string of identical words
     string bpronounce;
     while(cmudict >> bword){
         getline(cmudict, bpronounce);
-        if(bpronounce==apronounce){
+        if(bpronounce==apronounce && aword != bword && checkword(bword)){
             out = out + " " + bword;
         }
     }
-    return out;
+    cout << out << endl;
 }
 
 void addPhoneme(string apronounce){
@@ -138,7 +149,7 @@ void addPhoneme(string apronounce){
                     aindex++;
                 }
             }
-            if(replaceCount == 1){
+            if(replaceCount == 1 && checkword(bword)){
                 out = out + " " + bword;
             }
         }
@@ -194,7 +205,7 @@ void removePhoneme(string apronounce){
                     bindex++;
                 }
             }
-            if(replaceCount == 1){
+                if(replaceCount == 1 && checkword(bword)){
                 // cout << bword << "[" <<replaceCount << "]"<< endl;
                 out = out + " " + bword;
             }
@@ -246,12 +257,9 @@ void replacePhoneme (string apronounce) { //creates string of identical words to
                     replaceCount++;             //increment count
                 }
             }
-            if(replaceCount == 1){
+            if(replaceCount == 1 && checkword(bword)){
                 out = out + " " + bword;
             }
-        }
-        if(bpronounce==apronounce && bpronounce != apronounce){
-            out = out + " " + bword;
         }
     }
     cout << out << endl;
@@ -263,8 +271,8 @@ int main(){
     uppercase(input);
     cmudict = streamManager();
     string userPronounce = findWord(input);
-    string commonPronounce = identicalPhoneme(userPronounce);
-    cout << commonPronounce << endl;
+    cout << endl;
+    identicalPhoneme(userPronounce,input);
     addPhoneme(userPronounce);
     removePhoneme(userPronounce);
     replacePhoneme(userPronounce);
